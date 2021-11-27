@@ -1,21 +1,31 @@
 package connection;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.SQLException;
-import java.sql.*;
+import javax.sound.midi.Soundbank;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 public class Koneksi {
-    private static Connection mysqlconfig;
-    public static Connection configDB() throws SQLException{
+    public static Connection getConnection() throws ClassNotFoundException {
+        String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+        Connection conn = null;
+        String url = "jdbc:mysql://localhost/db_sunbook"; //url database
+        String user="root"; //user database
+        String pass=""; //password
         try {
-            String url = "jdbc:mysql:// localhost:3306/test"; //url database
-            String user="root"; //user database
-            String pass=""; //password
-            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            mysqlconfig=DriverManager.getConnection(url, user, pass);
-        } catch (Exception e) {
-            System.out.println("koneksi gagal "+e.getMessage()); //perintah menampilkan error pada koneksi
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(url, user, pass);
+        } catch (SQLException e) {
+            System.out.println(e);
         }
-        return mysqlconfig;
+        return conn;
+    }
+    public static void main(String[] args) throws ClassNotFoundException {
+        try {
+            Connection c = Koneksi.getConnection();
+            System.out.println(String.format("Connected to Database %s" + "Successfully.", c.getCatalog()));
+        } catch (SQLException e){
+            System.out.println(e);
+        }
     }
 }
