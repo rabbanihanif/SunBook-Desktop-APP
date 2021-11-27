@@ -16,10 +16,13 @@ public class Login {
         btnRegist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Register regist = new Register();
-                regist.createLayout();
+                Login.setVisible(false);
+                new Register().setVisible(true);
             }
         });
+    }
+    public void setVisible(boolean b){
+        Login.setVisible(b);
     }
 
     public static void main(String[] args) {
