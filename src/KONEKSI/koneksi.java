@@ -11,7 +11,7 @@ public class koneksi
     public Connection conn;
     public Statement st;
     public ResultSet rs;
-    String namaDataBase = "jdbc:mysql://localhost:3306/db_appbook";
+    String namaDataBase = "jdbc:mysql://localhost:3306/db_sunbook";
     
     public void koneksiDataBase()
     {
