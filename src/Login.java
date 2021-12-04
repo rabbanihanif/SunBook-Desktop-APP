@@ -2,6 +2,7 @@ import connection.Koneksi;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 
 public class Login {
@@ -18,6 +19,27 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 Login.setVisible(false);
                 new Register().setVisible(true);
+            }
+        });
+        btnLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Connection conn = Koneksi.getConnection();
+                    String username = tUsername.getText();
+                    String password = tPassword.getText();
+
+                    Statement stm = conn.createStatement();
+                    String sql = "select * from user where username ='"+username+"'and password ='"+password+"'";
+                    ResultSet res = stm.executeQuery(sql);
+                    if (res.next()){
+                        JOptionPane.showMessageDialog(null,"anda berhasil login");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "username atau password salah");
+                    }
+                }catch(SQLException | ClassNotFoundException ex){
+                    System.out.println(ex.getMessage());
+                }
             }
         });
     }
