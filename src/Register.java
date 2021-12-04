@@ -1,4 +1,5 @@
-import connection.Koneksi;
+
+import KONEKSI.Koneksi_login;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,7 +47,7 @@ public class Register {
                 }
                 else {
                     try {
-                        Connection conn = Koneksi.getConnection();
+                        Connection conn = Koneksi_login.getConnection();
                         PreparedStatement stmt = conn.prepareStatement("INSERT INTO user (username, password)VALUES(?,?)");
 
                         stmt.setString(1,tUsername.getText());
@@ -73,7 +74,7 @@ public class Register {
         String query = "SELECT * FROM `user` WHERE `username` =?";
 
         try {
-            ps = Koneksi.getConnection().prepareStatement(query);
+            ps = Koneksi_login.getConnection().prepareStatement(query);
             ps.setString(1, username);
 
             rs = ps.executeQuery();

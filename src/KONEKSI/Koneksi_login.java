@@ -1,11 +1,12 @@
-package connection;
-import javax.sound.midi.Soundbank;
+package KONEKSI;
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class Koneksi {
+public class Koneksi_login {
     public static Connection getConnection() throws ClassNotFoundException {
         String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
         Connection conn = null;
@@ -22,7 +23,7 @@ public class Koneksi {
     }
     public static void main(String[] args) throws ClassNotFoundException {
         try {
-            Connection c = Koneksi.getConnection();
+            Connection c = Koneksi_login.getConnection();
             System.out.println(String.format("Connected to Database %s" + "Successfully.", c.getCatalog()));
         } catch (SQLException e){
             System.out.println(e);

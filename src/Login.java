@@ -1,4 +1,5 @@
-import connection.Koneksi;
+
+import KONEKSI.Koneksi_login;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +26,7 @@ public class Login {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Connection conn = Koneksi.getConnection();
+                    Connection conn = Koneksi_login.getConnection();
                     String username = tUsername.getText();
                     String password = tPassword.getText();
 
