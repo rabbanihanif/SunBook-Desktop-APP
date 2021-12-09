@@ -2,7 +2,7 @@ package VIEW;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import MODEL.BukuModel;
@@ -14,18 +14,19 @@ public class BukuView extends javax.swing.JFrame {
     koneksi conn = new koneksi();
     BukuModel bukumodel = new BukuModel();
     BukuController bukukontrol = new BukuController();
-    
-    
+
+
+
     public BukuView() {
         initComponents();
         setLocationRelativeTo(this);
         showtable();
 //        tutuptext();
     }
-    
+
     private void kliktable()
     {
-        try 
+        try
         {
            int baris = tbl_buku.getSelectedRow();
            txtidbuku.setText(tbl_buku.getValueAt(baris, 0).toString());
@@ -35,18 +36,18 @@ public class BukuView extends javax.swing.JFrame {
            txtPenerbitBuku.setText(tbl_buku.getValueAt(baris, 4).toString());
            txtHarga.setText(tbl_buku.getValueAt(baris, 5).toString());
            txtStok.setText(tbl_buku.getValueAt(baris, 6).toString());
-        } 
-        catch (Exception e) 
+        }
+        catch (Exception e)
         {
             System.err.println("Error : " + e);
         }
     }
-    
+
     private void showtable()
     {
         conn.koneksiDataBase();
         DefaultTableModel tabel = new DefaultTableModel();
-        
+
         tabel.addColumn("ID");
         tabel.addColumn("Kode Buku");
         tabel.addColumn("Jenis Buku");
@@ -54,15 +55,15 @@ public class BukuView extends javax.swing.JFrame {
         tabel.addColumn("Penerbit Buku");
         tabel.addColumn("Harga Buku");
         tabel.addColumn("Stok");
-        
+
         tbl_buku.setModel(tabel);
-        
-        try 
+
+        try
         {
             String sql = "select * from tabel_buku";
 
             ResultSet rs = conn.st.executeQuery(sql);
-            while (rs.next()) 
+            while (rs.next())
             {
                 tabel.addRow(new Object[]
                 {
@@ -75,16 +76,16 @@ public class BukuView extends javax.swing.JFrame {
                 rs.getString("Stok")
                 });
                 tbl_buku.setModel(tabel);
-            } 
+            }
         }
-        catch (SQLException e) 
+        catch (SQLException e)
         {
             System.err.println("Pembeli View Showtable Error" + e);
         }
     }
-    
+
     private void simpan(){
-        try 
+        try
         {
             String kodebuku = txtKodeBuku.getText();
             String jenisbuku = (String)cbxJenisBuku.getSelectedItem();
@@ -92,7 +93,7 @@ public class BukuView extends javax.swing.JFrame {
             String penerbitbuku = txtPenerbitBuku.getText();
             int harga = Integer.parseInt(txtHarga.getText());
             int stok = Integer.parseInt(txtStok.getText());
-            
+
             bukumodel.setKodeBuku(kodebuku);
             bukumodel.setJenisBuku(jenisbuku);
             bukumodel.setJudulBuku(judulbuku);
@@ -101,16 +102,16 @@ public class BukuView extends javax.swing.JFrame {
             bukumodel.setStok(stok);
             bukukontrol.simpan(bukumodel);
             showtable();
-        } 
-        catch (Exception e) 
+        }
+        catch (Exception e)
         {
-  
+
         }
     }
-    
+
     private void update()
     {
-        try 
+        try
         {
             int id = Integer.parseInt(txtidbuku.getText());
             String kodebuku = txtKodeBuku.getText();
@@ -119,7 +120,7 @@ public class BukuView extends javax.swing.JFrame {
             String penerbitbuku = txtPenerbitBuku.getText();
             int harga = Integer.parseInt(txtHarga.getText());
             int stok = Integer.parseInt(txtStok.getText());
-            
+
             bukumodel.setIdBuku(id);
             bukumodel.setKodeBuku(kodebuku);
             bukumodel.setJenisBuku(jenisbuku);
@@ -129,29 +130,29 @@ public class BukuView extends javax.swing.JFrame {
             bukumodel.setStok(stok);
             bukukontrol.simpan(bukumodel);
             showtable();
-        } 
-        catch (Exception e) 
+        }
+        catch (Exception e)
         {
-            
+
         }
     }
-    
+
     private void hapus()
     {
-        try 
+        try
         {
             int id = Integer.parseInt(txtidbuku.getText());
             bukumodel.setIdBuku(id);
             bukukontrol.hapus(bukumodel);
             showtable();
-        } 
-        catch (Exception e) 
-        {
-            
         }
-    
+        catch (Exception e)
+        {
+
+        }
+
     }
-    
+
     private void tutuptext()
     {
         txtidbuku.setEnabled(false);
@@ -161,9 +162,9 @@ public class BukuView extends javax.swing.JFrame {
         txtPenerbitBuku.setEnabled(false);
         txtHarga.setEnabled(false);
         txtStok.setEnabled(false);
-    
+
     }
-    
+
     private void bukatext()
     {
         txtidbuku.setEnabled(true);
@@ -174,7 +175,7 @@ public class BukuView extends javax.swing.JFrame {
         txtHarga.setEnabled(true);
         txtStok.setEnabled(true);
     }
-    
+
     private void bersih()
     {
         txtidbuku.setText("");
@@ -185,7 +186,7 @@ public class BukuView extends javax.swing.JFrame {
         txtHarga.setText("");
         txtStok.setText("");
     }
-    
+
 //    private void NEW()
 //    {
 //        btnNew.setEnabled(false);
@@ -195,7 +196,7 @@ public class BukuView extends javax.swing.JFrame {
 //        btnSave.setEnabled(true);
 //    }
 
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -513,39 +514,39 @@ public class BukuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidbukuActionPerformed
 
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BukuView().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(BukuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new BukuView().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;

@@ -1,9 +1,11 @@
-
 import KONEKSI.Koneksi_login;
+import MainMenu.Menu;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+
 
 
 public class Login {
@@ -13,6 +15,7 @@ public class Login {
     private JButton btnLogin;
     private JButton btnRegist;
     private JPanel panel1;
+
 
     public Login() {
         btnRegist.addActionListener(new ActionListener() {
@@ -35,6 +38,7 @@ public class Login {
                     ResultSet res = stm.executeQuery(sql);
                     if (res.next()){
                         JOptionPane.showMessageDialog(null,"anda berhasil login");
+                        new Menu();
                     } else {
                         JOptionPane.showMessageDialog(null, "username atau password salah");
                     }
@@ -43,17 +47,19 @@ public class Login {
                 }
             }
         });
+
+
+        Login.add(panel1);
+        Login.pack();
+        Login.setVisible(true);
+
+        Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Login.setSize(new java.awt.Dimension(1024,720));
+
+
     }
     public void setVisible(boolean b){
         Login.setVisible(b);
     }
 
-    public static void main(String[] args) {
-        Login.setContentPane(new Login().panel1);
-        Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Login.setMinimumSize(new java.awt.Dimension(360, 180));
-        Login.setSize(new java.awt.Dimension(360, 180));
-        Login.pack();
-        Login.setVisible(true);
-    }
 }
