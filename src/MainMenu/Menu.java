@@ -1,6 +1,8 @@
 package MainMenu;
 
 import VIEW.BukuView;
+import VIEW.PembeliView;
+import VIEW.TransaksiView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,18 @@ public class Menu {
             public void actionPerformed(ActionEvent e) {
                 new BukuView().setVisible(true);
 
+            }
+        });
+        ButtonDataPembeli.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PembeliView().setVisible(true);
+            }
+        });
+        ButtonDataTransaksi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TransaksiView().setVisible(true);
             }
         });
     }

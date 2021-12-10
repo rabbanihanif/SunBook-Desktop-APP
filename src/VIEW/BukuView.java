@@ -24,6 +24,9 @@ public class BukuView extends javax.swing.JFrame {
 //        tutuptext();
     }
 
+
+
+
     private void kliktable()
     {
         try
