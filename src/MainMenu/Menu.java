@@ -19,8 +19,8 @@ public class Menu {
 
     public Menu() {
         frame.add(Pmenu);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1024, 720);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(640 , 480);
         frame.setVisible(true);
         frame.setResizable(false);
 
@@ -28,6 +28,7 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new BukuView().setVisible(true);
+
 
             }
         });
@@ -41,12 +42,12 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new TransaksiView().setVisible(true);
+
+
             }
         });
     }
 
 
-    public static void main(String[] args) {
-        new Menu();
-    }
+
 }

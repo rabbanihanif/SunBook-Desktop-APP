@@ -1,5 +1,7 @@
 package VIEW;
 
+import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
@@ -8,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import MODEL.BukuModel;
 import CONTROLLER.BukuController;
 import KONEKSI.koneksi;
+import MainMenu.Menu;
 
 public class BukuView extends javax.swing.JFrame {
 
@@ -17,10 +20,12 @@ public class BukuView extends javax.swing.JFrame {
 
 
 
+
     public BukuView() {
         initComponents();
         setLocationRelativeTo(this);
         showtable();
+
 //        tutuptext();
     }
 
@@ -190,14 +195,20 @@ public class BukuView extends javax.swing.JFrame {
         txtStok.setText("");
     }
 
-//    private void NEW()
-//    {
-//        btnNew.setEnabled(false);
+    private void NEW()
+    {
+        btnNew.setEnabled(true);
+        btnNew.setText("tst");
 //        btnEdit.setEnabled(false);
 //        btnHapus.setEnabled(false);
 //        btnUpdate.setEnabled(false);
 //        btnSave.setEnabled(true);
-//    }
+    }
+
+    public void close() {
+        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+    }
 
 
     @SuppressWarnings("unchecked")
@@ -207,6 +218,7 @@ public class BukuView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        btnKembali = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtidbuku = new javax.swing.JTextField();
@@ -240,12 +252,21 @@ public class BukuView extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 24)); // NOI18N
         jLabel8.setText("Data Buku");
 
+        btnKembali.setText("Kembali");
+        btnKembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKembaliActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(317, 317, 317)
+                .addContainerGap()
+                .addComponent(btnKembali)
+                .addGap(236, 236, 236)
                 .addComponent(jLabel8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -253,7 +274,9 @@ public class BukuView extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnKembali)
+                    .addComponent(jLabel8))
                 .addGap(21, 21, 21))
         );
 
@@ -517,6 +540,12 @@ public class BukuView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidbukuActionPerformed
 
+    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
+        // TODO add your handling code here:
+        close();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btnKembaliActionPerformed
+
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -554,6 +583,7 @@ public class BukuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;

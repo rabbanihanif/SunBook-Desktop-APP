@@ -2,8 +2,10 @@ import KONEKSI.Koneksi_login;
 import MainMenu.Menu;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.sql.*;
 
 
@@ -16,8 +18,14 @@ public class Login {
     private JButton btnRegist;
     private JPanel panel1;
 
+    public void close() {
+        WindowEvent closeWindow = new WindowEvent(Login, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+    }
 
     public Login() {
+
+
         btnRegist.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,6 +46,7 @@ public class Login {
                     ResultSet res = stm.executeQuery(sql);
                     if (res.next()){
                         JOptionPane.showMessageDialog(null,"anda berhasil login");
+                        close();
                         new Menu();
                     } else {
                         JOptionPane.showMessageDialog(null, "username atau password salah");
@@ -49,12 +58,14 @@ public class Login {
         });
 
 
+
+
         Login.add(panel1);
         Login.pack();
         Login.setVisible(true);
 
-        Login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Login.setSize(new java.awt.Dimension(1024,720));
+        Login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Login.setSize(new java.awt.Dimension(640,480));
 
 
     }

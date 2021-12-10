@@ -1,6 +1,8 @@
 
 import KONEKSI.Koneksi_login;
 
+import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +20,13 @@ public class Register {
     private JButton btnRegist;
     private JButton exitButton;
     private JPanel panelRegist;
+
+
+
+    public void close() {
+        WindowEvent closeWindow = new WindowEvent(Regist, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+    }
 
     public Register() {
         Regist.setContentPane(panelRegist);
